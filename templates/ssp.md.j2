@@ -1,0 +1,59 @@
+# System Security Plan: {{ system.system.name }}
+
+> Decision-support draft. Human review and approval are required. This output does not constitute authorization or a guarantee of compliance.
+
+## Document Control
+
+| Field | Value |
+|---|---|
+| System owner | {{ system.system.owner }} |
+| Security lead | {{ system.system.security_lead }} |
+| Version | {{ system.metadata.version }} |
+| NIST catalog | {{ system.metadata.nist_catalog }} |
+| OSCAL target | {{ system.metadata.oscal_version }} |
+
+## System Description
+
+{{ system.system.description }}
+
+**Business purpose:** {{ system.system.business_purpose }}
+
+**Authorization boundary:** {{ system.system.authorization_boundary }}
+
+## Security Categorization
+
+| Objective | Impact |
+|---|---|
+| Confidentiality | {{ categorization.ratings.confidentiality | title }} |
+| Integrity | {{ categorization.ratings.integrity | title }} |
+| Availability | {{ categorization.ratings.availability | title }} |
+| Recommended starting baseline | {{ categorization.recommended_baseline | title }} |
+
+Method: {{ categorization.method }}. Approval required: {{ categorization.requires_human_approval }}.
+
+## Environment and Components
+
+{% for component in system.components %}- **{{ component.name }}** ({{ component.type }}): {{ component.description }}
+{% endfor %}
+
+## Information Types
+
+{% for info in system.information_types %}- **{{ info.name }}:** {{ info.description }}
+{% endfor %}
+
+## Control Implementations
+
+{% for control in system.controls %}### {{ control.id }} — {{ control.title }}
+
+- Status: {{ control.status }}
+- Allocation: {{ control.allocation }}
+- Responsible role: {{ control.responsible_role }}
+- Evidence: {{ control.evidence | join(', ') if control.evidence else 'No evidence recorded' }}
+
+{{ control.implementation_statement }}
+
+{% endfor %}
+## Continuous Monitoring
+
+{{ system.continuous_monitoring.strategy }}
+
