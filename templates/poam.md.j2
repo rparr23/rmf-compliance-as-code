@@ -1,0 +1,24 @@
+# Plan of Action and Milestones
+
+## Executive Summary
+
+| Metric | Count |
+|---|---:|
+| Total | {{ summary.total }} |
+| Open | {{ summary.open }} |
+| Critical or high | {{ summary.critical_high }} |
+| Overdue | {{ summary.overdue }} |
+
+## Findings
+
+{% for item in poam["items"] %}### {{ item.id }} — {{ item.title }}
+
+- Owner: {{ item.owner }}
+- Status: {{ item.status }}
+- Risk: {{ item.risk.rating }}
+- Planned completion: {{ item.planned_completion }}
+- Controls: {{ item.control_ids | join(', ') }}
+- Weakness: {{ item.weakness }}
+- Remediation: {{ item.remediation }}
+
+{% endfor %}
