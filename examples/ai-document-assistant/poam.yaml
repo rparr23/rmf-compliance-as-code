@@ -1,0 +1,24 @@
+items:
+  - id: POAM-2026-001
+    title: Privileged accounts require phishing-resistant MFA
+    owner: IAM Manager
+    status: in-progress
+    planned_completion: 2026-12-15
+    control_ids: [IA-2]
+    weakness: Two synthetic administrative accounts use standard MFA.
+    remediation: Enroll administrators in phishing-resistant authentication and verify enforcement.
+    risk:
+      rating: high
+    evidence: []
+  - id: POAM-2026-002
+    title: Complete retrieval-event alert tuning
+    owner: Security Operations Manager
+    status: open
+    planned_completion: 2027-01-31
+    control_ids: [AU-6, SI-4]
+    weakness: Alert thresholds have not completed production tuning.
+    remediation: Baseline events, tune thresholds, document review, and attach test evidence.
+    risk:
+      rating: moderate
+    evidence: []
+
