@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openrmf-forge"
+version = "0.1.0"
+description = "NIST RMF compliance-as-code toolkit for categorization, SSP, POA&M, and validation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+authors = [{name = "Richard Parr"}]
+dependencies = ["PyYAML>=6.0", "Jinja2>=3.1", "jsonschema>=4.20"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+openrmf = "openrmf.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
