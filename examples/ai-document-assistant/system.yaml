@@ -1,0 +1,55 @@
+metadata:
+  version: "0.1"
+  nist_catalog: "SP 800-53 Rev. 5 Release 5.2.0"
+  oscal_version: "1.2.3"
+system:
+  name: Workforce AI Document Assistant
+  owner: Director of Human Resources
+  security_lead: Information System Security Officer
+  description: A fictional internal retrieval-augmented assistant that answers employee-policy questions using approved documents.
+  business_purpose: Reduce repetitive policy inquiries while preserving privacy, access control, and human escalation.
+  authorization_boundary: Corporate Azure tenant, application service, vector store, logging, and approved identity connection.
+categorization:
+  confidentiality: moderate
+  integrity: moderate
+  availability: low
+information_types:
+  - name: Personnel information
+    description: Limited employee identity and role attributes used for access decisions.
+  - name: Internal policy information
+    description: Approved HR policies indexed for grounded responses.
+components:
+  - name: Web application
+    type: software
+    description: Employee chat interface and orchestration service.
+  - name: Microsoft Entra ID
+    type: external-service
+    description: Workforce authentication and group claims.
+  - name: Vector store
+    type: database
+    description: Search index containing approved policy passages.
+controls:
+  - id: AC-2
+    title: Account Management
+    status: implemented
+    allocation: hybrid
+    responsible_role: Identity and Access Management Team
+    implementation_statement: The IAM Team provisions workforce access through Entra ID groups, reviews membership quarterly, and disables access through the documented HR offboarding workflow.
+    evidence: [synthetic-access-review.json]
+  - id: AU-2
+    title: Event Logging
+    status: partially-implemented
+    allocation: system-specific
+    responsible_role: Application Operations Team
+    implementation_statement: Application Operations records authentication, administrative, retrieval, and safety events in the centralized logging service and reviews high-severity alerts daily.
+    evidence: [synthetic-log-policy.md]
+  - id: IR-6
+    title: Incident Reporting
+    status: implemented
+    allocation: common
+    responsible_role: Security Operations Center
+    implementation_statement: The Security Operations Center receives application alerts through the corporate incident workflow, triages reportable events, and retains incident tickets as evidence.
+    evidence: [synthetic-incident-workflow.md]
+continuous_monitoring:
+  strategy: Control owners review identity quarterly, vulnerabilities weekly, logging alerts daily, evidence freshness monthly, and material system changes before release.
+
